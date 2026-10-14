@@ -17,7 +17,7 @@
   <div class="hud-row">
     <div class="hud-left">
       <span class="hud-logo">✦ ACC</span>
-      <span class="hud-counter"><b id="slideNow">1</b> / <span id="slideTotal">29</span></span>
+      <span class="hud-counter"><b id="slideNow">1</b> / <span id="slideTotal">11</span></span>
     </div>
     <div class="hud-mid" id="dots"></div>
     <div class="hud-right">
@@ -35,714 +35,390 @@
 <!-- ============ OVERVIEW ============ -->
 <div class="overview" id="overview"><div class="overview-grid" id="overviewGrid"></div></div>
 
-<!-- ============ DECK ============ -->
+<!-- ============ DECK — 10 BEATS, ONE STORY ============ -->
 <main class="deck" id="deck">
 
-<!-- ───────────────────────── SLIDE 1 · TITLE ───────────────────────── -->
-<section class="slide s-title" data-title="Title">
+<!-- ───────────── SLIDE 1 · THE HOOK ───────────── -->
+<section class="slide s-title" data-title="01 · The Hook">
   <div class="glow ga"></div><div class="glow gb"></div>
   <div class="stars"></div>
   <div class="inner center">
-    <p class="kicker r1">College Project · Full-Stack AI Platform · Live Deployment</p>
+    <p class="kicker r1">a 10-slide story · zero filler</p>
     <h1 class="r2 a-zoom">AI CAREER<br><span class="grad">COPILOT</span></h1>
     <p class="lede r3 a-blur">You don't have a career problem. You have a <em>direction</em> problem —<br>and direction can be engineered.</p>
     <div class="title-meta r4">
-      <span>React 19 · Express 5 · Firebase · Google Gemini</span>
-      <span class="dot-sep"></span>
-      <span>From <em>"what do I do with my life?"</em> to a plan you can start this week.</span>
+      <span>React 19 · Express 5 · Firebase · Google Gemini · Backblaze B2 · Vercel</span>
     </div>
     <p class="presenter r5">Presented by <b>Nikita Rai</b></p>
-    <p class="begin r6">press <b>→</b> to begin</p>
+    <p class="begin r6">press <b>→</b> to begin the story</p>
   </div>
 </section>
 
-<!-- ───────────────────────── SLIDE 2 · THE PAIN ───────────────────────── -->
-<section class="slide" data-title="The Pain">
+<!-- ───────────── SLIDE 2 · THE TECH SHEET (complete technical map) ───────────── -->
+<section class="slide tight" data-title="02 · The Tech Sheet">
+  <div class="glow gb"></div>
+  <div class="inner">
+    <p class="kicker r1">BEAT 00 · APPENDIX UP FRONT — the whole engine on one screen</p>
+    <h2 class="r2 a-blur">Every technical decision, <span class="grad">one screen</span> — nothing left out.</h2>
+    <div class="ts-grid">
+      <div class="ts-card r2 a-flip">
+        <h4>FRONTEND · REACT SPA</h4>
+        <ul>
+          <li><b>React 19 + TypeScript</b> strict · Vite build</li>
+          <li><b>Tailwind v4 + shadcn/ui</b> — Radix, 50+ primitives</li>
+          <li><b>TanStack Query</b> — cache · invalidation · retry 1→2→4s</li>
+          <li>Wouter 2KB router · Framer Motion · Lucide · Recharts</li>
+          <li>Firebase JS SDK — <b>auth + presence only</b></li>
+          <li>ARIA · keyboard nav · error boundaries</li>
+          <li>Saved chat sessions (localStorage per user)</li>
+        </ul>
+      </div>
+      <div class="ts-card r2 a-flip">
+        <h4>BACKEND · EXPRESS API</h4>
+        <ul>
+          <li><b>Express 5 · Node 24</b> (engine-pinned)</li>
+          <li><b>esbuild → one serverless bundle</b> — tiny cold starts</li>
+          <li>~30 REST endpoints · uniform error envelope</li>
+          <li>cookie-parser · cors · Pino structured logs</li>
+          <li><b>Zod parses every</b> body · param · AI response</li>
+          <li>Per request: <b>Bearer token or session cookie</b></li>
+        </ul>
+      </div>
+      <div class="ts-card r3 a-flip">
+        <h4>DATA · FIRESTORE + RTDB</h4>
+        <div class="ts-tree">users/{uid} → careers/{id}
+ ├ skillGap · roadmap(7) · projects
+ ├ opportunities · resumes · interviews
+ └ chat · notifications · usage/{date}
+communityPosts → comments
+resumeCleanupQueue · presence/{uid}</div>
+        <ul>
+          <li>Rules: <b>allow read, write: if false</b> — Admin SDK only</li>
+          <li>Atomic batches · <b>transactions</b> for tasks &amp; quotas</li>
+        </ul>
+      </div>
+      <div class="ts-card r3 a-flip">
+        <h4>AUTH &amp; SESSIONS</h4>
+        <ul>
+          <li><b>Firebase Auth</b>: Email/Password + Google + reset flow</li>
+          <li>POST /auth/session → verifyIdToken · <b>auth_time &lt; 5 min</b></li>
+          <li>Cookie <b>5 days</b>: httpOnly · secure · SameSite=Lax</li>
+          <li>Or per-call <b>Bearer idToken</b> (Admin-verified)</li>
+          <li>Browser holds only public VITE_FIREBASE_* config</li>
+        </ul>
+      </div>
+      <div class="ts-card r4 a-flip">
+        <h4>AI ENGINE · GOOGLE GEMINI</h4>
+        <ul>
+          <li><b>5 features</b>: matches · learning path · coach · resume scan · interview</li>
+          <li><b>JSON mode</b> · temp 0.3 · capped output tokens</li>
+          <li><b>Dual-path</b>: direct REST (20s abort/model) → SDK fallback</li>
+          <li>Fence-strip → parse → Zod → <b>502 on bad output</b></li>
+          <li>Coach grounded in live account: gaps · roadmap % · scores · last 20 msgs</li>
+          <li>Guardrails: <b>no invented facts, no promises</b></li>
+        </ul>
+      </div>
+      <div class="ts-card r4 a-flip">
+        <h4>STORAGE PIPELINE</h4>
+        <ul>
+          <li>Resumes → <b>private Backblaze B2</b> (S3-compatible)</li>
+          <li>Presigned PUT <b>300s TTL</b> · direct server upload · ≤5 MB</li>
+          <li><b>%PDF-</b> magic-byte check · express.raw ≤10 MB</li>
+          <li><b>1-hour retention</b> → cleanup queue → cron purge</li>
+          <li>Version-aware deletes · batches of 10</li>
+          <li>Avatars → <b>ImgBB</b> · data-URI fallback</li>
+        </ul>
+      </div>
+      <div class="ts-card r5 a-flip">
+        <h4>SECURITY &amp; FAIR USE</h4>
+        <ul>
+          <li><b>0 keys in the browser</b> — secrets are server env only</li>
+          <li>Path-traversal blocked · filenames sanitized · ID regex</li>
+          <li>HTTPS-only image URLs · strict length limits</li>
+          <li>Cron authorized via <b>timingSafeEqual</b> bearer secret</li>
+          <li>Daily quotas: <b>100 chat · 5 scans · 10 interviews · 60 answers · 5 refreshes</b></li>
+        </ul>
+      </div>
+      <div class="ts-card r5 a-flip">
+        <h4>INFRA · MONOREPO · OPS</h4>
+        <ul>
+          <li><b>Vercel</b>: static edge + /api function (60s max)</li>
+          <li>Cron <b>17 3 * * *</b> → cleanup-expired-resumes</li>
+          <li><b>/api/healthz</b> poll 30s (6s down) · /api/ai/diagnose</li>
+          <li><b>pnpm monorepo · 7 packages</b> · catalog pins</li>
+          <li>openapi.yaml → <b>Orval</b> → Zod + typed React-Query hooks</li>
+          <li><b>tsc --build</b> gates every deploy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ts-endpoints r6">~30 REST ENDPOINTS · /auth/session · /profile · /dashboard · /careers/:id/active · /learning-path · /roadmap/:phase/tasks · /projects · /ai/analyze-careers · /ai/generate-learning-path · /ai/chat · /ai/diagnose · /resumes · /resumes/analyze · /storage/resume/* · /storage/image · /interviews · /interviews/:id/answer · /opportunities · /notifications · /community/posts · /community/posts/:id/comments · /chat/history · /career-levels · /cron/cleanup-expired-resumes · /healthz</div>
+  </div>
+</section>
+
+<!-- ───────────── SLIDE 3 · THE PROBLEM (+ the price) ───────────── -->
+<section class="slide tight" data-title="03 · The Problem">
   <div class="glow ga pain-glow"></div>
   <div class="inner">
-    <p class="kicker bad r1">ACT I · THE PROBLEM — read this twice</p>
+    <p class="kicker bad r1">BEAT 01 · THE PROBLEM — read this twice</p>
     <h2 class="r2 a-blur">Nobody fails a career they <span class="bad">planned</span>.<br>They fail one they <span class="bad">guessed</span>.</h2>
-    <div class="cards grid4">
-      <div class="card pain r3 a-left"><div class="card-ico">✕</div><h3>Advice overload</h3><p>You asked ten people what to do. You got eleven answers. All confident. None about <em>you</em>.</p></div>
-      <div class="card pain r4 a-right"><div class="card-ico">◉</div><h3>The ATS black hole</h3><p>Your generic resume was rejected by a robot before any human ever saw it. Nobody even told you why.</p></div>
-      <div class="card pain r5 a-left"><div class="card-ico">☠</div><h3>Cold interviews</h3><p>The first time you hear a real interview question should <em>never</em> be inside the real interview.</p></div>
-      <div class="card pain r6 a-right"><div class="card-ico">◌</div><h3>Paralysis</h3><p>A thousand career options, a hundred open tabs, zero direction. So you scroll. And stay stuck.</p></div>
+    <div class="prob-grid">
+      <div class="prob-col r3 a-left">
+        <p class="col-label">SOUND FAMILIAR?</p>
+        <div class="pain-row"><span class="pain-ico">✕</span><span><b>Advice overload</b><p>Ten people, eleven answers. All confident. None about <i>you</i>.</p></span></div>
+        <div class="pain-row"><span class="pain-ico">◉</span><span><b>The ATS black hole</b><p>A robot rejected your resume before any human ever saw it — and never said why.</p></span></div>
+        <div class="pain-row"><span class="pain-ico">☠</span><span><b>Cold interviews</b><p>The first time you hear a real interview question should never be inside the real interview.</p></span></div>
+        <div class="pain-row"><span class="pain-ico">◌</span><span><b>Paralysis</b><p>A thousand options, a hundred tabs, zero direction. So you scroll. And stay stuck.</p></span></div>
+      </div>
+      <div class="prob-col r4 a-right">
+        <p class="col-label">WHAT CONFUSION COSTS YOU</p>
+        <div class="cost-line"><b>×4</b><span>semesters slip by while you "figure it out"</span></div>
+        <div class="cost-line"><b>0</b><span>portfolio projects built — nobody told you which ones matter</span></div>
+        <div class="cost-line"><b>100s</b><span>blind applications sent to roles you were never matched to</span></div>
+        <div class="cost-line"><b>1st</b><span>real interview = your first-ever practice. Ouch.</span></div>
+      </div>
     </div>
-    <p class="footer-line r7">Every one of these is a <b>system problem</b>. And systems can be built.</p>
+    <p class="punch-line r5 a-zoom">The scariest part? It's invisible — until graduation is close. <b>You don't get this year back.</b></p>
   </div>
 </section>
 
-<!-- ───────────────────────── SLIDE 3 · COST OF GUESSING ───────────────────────── -->
-<section class="slide" data-title="The Cost">
-  <div class="glow gb pain-glow"></div>
-  <div class="inner">
-    <p class="kicker bad r1">ACT I · THE PROBLEM</p>
-    <h2 class="r2 a-blur">Confusion isn't free.<br>You're paying for it <span class="bad">every single day</span>.</h2>
-    <div class="cost-row">
-      <div class="cost r3 a-drop"><span class="cost-big">×4</span><span class="cost-what">semesters that slip by while you "figure it out"</span></div>
-      <div class="cost r4 a-drop"><span class="cost-big">0</span><span class="cost-what">portfolio projects built, because no one told you which to build</span></div>
-      <div class="cost r5 a-drop"><span class="cost-big">100s</span><span class="cost-what">blind applications sent to roles you were never matched to</span></div>
-      <div class="cost r6 a-drop"><span class="cost-big">1st</span><span class="cost-what">real interview = your first ever interview practice. Ouch.</span></div>
-    </div>
-    <div class="cost-close r7 a-zoom">
-      <p>The scariest part? It's <b>invisible</b>. Nothing feels wrong until graduation is close — and then it's expensive.</p>
-      <p class="punch">You don't get this year back.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 4 · THE REVEAL ───────────────────────── -->
-<section class="slide s-title" data-title="The Reveal">
+<!-- ───────────── SLIDE 4 · THE REVEAL (what · why · who · journey · vs) ───────────── -->
+<section class="slide s-title" data-title="04 · The Reveal">
   <div class="glow ga"></div><div class="glow gb"></div><div class="stars"></div>
   <div class="inner center">
-    <p class="kicker good r1">ACT II · THE PRODUCT</p>
-    <h1 class="r2 a-zoom" style="font-size:clamp(2.4rem,6vw,5.2rem)">Meet your <span class="grad">career copilot</span>.</h1>
-    <p class="lede r3 a-blur">One platform that <b>knows you</b>, <b>plans for you</b>, <b>trains you</b>, and <b>points you at real jobs</b> —<br>powered by the same AI that runs on Google's own infrastructure.</p>
+    <p class="kicker good r1">BEAT 02 · THE PRODUCT</p>
+    <h2 class="r2 a-zoom" style="font-size:clamp(2.2rem,5.4vw,4.4rem)">Meet your <span class="grad">career copilot</span>.</h2>
+    <p class="lede r3 a-blur">One platform that <b>knows you</b>, <b>plans for you</b>, <b>trains you</b>, and <b>points you at real jobs</b> — because generic advice fails everyone equally, counselors are slow and expensive, and AI finally makes personal guidance free. Built for anyone who's answered <em>"so, what's your plan?"</em> with silence.</p>
     <div class="stat-strip r4">
       <div class="stat a-pop"><b class="count" data-count="12">0</b><span>modules, one mission</span></div>
       <div class="stat a-pop"><b class="count" data-count="6">0</b><span>minutes to your first match</span></div>
       <div class="stat a-pop"><b class="count" data-count="7">0</b><span>phase personal roadmap</span></div>
       <div class="stat a-pop"><b class="count" data-count="0">0</b><span>API keys exposed to your browser</span></div>
     </div>
-    <p class="begin r5">It's not a concept. It's <b>deployed. Live. Ready.</b></p>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 5 · WHAT / WHY / WHO ───────────────────────── -->
-<section class="slide" data-title="What · Why · Who">
-  <div class="glow ga"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT II · THE PRODUCT</p>
-    <h2 class="r2 a-blur">The 30-second version.</h2>
-    <div class="cards grid3">
-      <div class="card r3 a-flip"><div class="card-ico">◆</div><h3>WHAT it is</h3><p>A full-stack web platform that assesses who you are, uses <b>Google Gemini</b> to match you to careers with real reasons, then builds your skill-gap map, 7-phase learning roadmap, portfolio projects, resume feedback, mock interviews — and pulls <b>live job listings</b> matched to your profile.</p></div>
-      <div class="card r4 a-flip"><div class="card-ico">◇</div><h3>WHY it exists</h3><p>Because generic advice fails everyone equally, personal career counseling is expensive and slow, and job portals give you listings <em>without a plan</em>. AI finally makes <b>personal guidance scalable to zero cost</b>.</p></div>
-      <div class="card r5 a-flip"><div class="card-ico">◈</div><h3>WHO it's for</h3><p>Students and early-career people staring at the biggest decision of their lives with the least information — anyone who's answered <em>"so… what's your plan?"</em> with silence.</p></div>
-    </div>
-    <p class="footer-line r6">Not another chatbot. A <b>career operating system</b> with memory, structure and receipts.</p>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 6 · THE JOURNEY ───────────────────────── -->
-<section class="slide" data-title="The Journey">
-  <div class="glow gb"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT II · THE PRODUCT</p>
-    <h2 class="r2 a-blur">Five moves. One direction.</h2>
-    <div class="journey">
-      <div class="jstep r2 a-pop"><span class="jnum">01</span><h3>ASSESS</h3><p>A 6-step profile: skills with self-rated levels, interests, goals, experience, weekly time budget.</p></div>
-      <div class="jarrow r3">→</div>
-      <div class="jstep r3 a-pop"><span class="jnum">02</span><h3>MATCH</h3><p>Gemini ranks 4–5 careers with match %, the <em>reasons</em> behind each, entry paths and honest challenges.</p></div>
-      <div class="jarrow r4">→</div>
-      <div class="jstep r4 a-pop"><span class="jnum">03</span><h3>PLAN</h3><p>Skill-gap map → a 7-phase roadmap with hour-estimated tasks → portfolio projects chosen for you.</p></div>
+    <div class="journey r5">
+      <div class="jstep a-pop"><span class="jnum">01</span><h3>ASSESS</h3><p>A 6-step profile: skills, interests, goals, experience, weekly hours.</p></div>
       <div class="jarrow r5">→</div>
-      <div class="jstep r5 a-pop"><span class="jnum">04</span><h3>PROVE</h3><p>Resume scored 0–100 with fixes. Mock interviews with per-answer feedback. Evidence, not vibes.</p></div>
+      <div class="jstep a-pop"><span class="jnum">02</span><h3>MATCH</h3><p>Gemini ranks 4–5 careers — with the <i>reasons</i>, not just a number.</p></div>
       <div class="jarrow r6">→</div>
-      <div class="jstep r6 a-pop"><span class="jnum">05</span><h3>LAUNCH</h3><p>Live internships & jobs pulled for <em>your</em> career, your locations — plus an AI coach in your corner.</p></div>
+      <div class="jstep a-pop"><span class="jnum">03</span><h3>PLAN</h3><p>Skill gaps → 7-phase roadmap → portfolio projects chosen for you.</p></div>
+      <div class="jarrow r6">→</div>
+      <div class="jstep a-pop"><span class="jnum">04</span><h3>PROVE</h3><p>Resume scored 0–100. Mock interviews with per-answer coaching.</p></div>
+      <div class="jarrow r7">→</div>
+      <div class="jstep a-pop"><span class="jnum">05</span><h3>LAUNCH</h3><p>Live jobs for <i>your</i> career + an AI coach that knows your file.</p></div>
     </div>
-    <p class="footer-line r7">Every step feeds the next. The system gets smarter about you <b>as you move</b>.</p>
+    <div class="vs-strip r6">Career counselor <span class="vsep">→</span> expensive, slow &nbsp;·&nbsp; Job portals <span class="vsep">→</span> a firehose without a plan &nbsp;·&nbsp; Raw ChatGPT <span class="vsep">→</span> doesn't know you &nbsp;·&nbsp; <b>Ascend → all of it. Free. In minutes.</b></div>
   </div>
 </section>
 
-<!-- ───────────────────────── SLIDE 7 · ASSESSMENT ───────────────────────── -->
-<section class="slide" data-title="Assessment">
+<!-- ───────────── SLIDE 5 · ACT 1 — THE DIAGNOSIS (assessment + matching + gaps) ───────────── -->
+<section class="slide tight" data-title="05 · Act 1 · Diagnosis">
   <div class="glow ga"></div>
   <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 01</p>
-    <h2 class="r2 a-blur">Career Assessment — <span class="grad">it asks better questions</span> than your relatives.</h2>
-    <div class="split">
-      <div class="split-l r3 a-left">
-        <p class="big-copy">Six short steps. Save as you go. Change your mind anytime.</p>
-        <ul class="ticks">
-          <li><b>Who you are</b> — education level, field, university, year</li>
-          <li><b>What you can do</b> — skills with honest self-ratings: Beginner → Advanced</li>
-          <li><b>What holds your attention</b> — interests & themes you naturally drift to</li>
-          <li><b>Where you might go</b> — target roles, industries, start timeline</li>
-          <li><b>What you've tried</b> — projects, internships, achievements</li>
-          <li><b>What fits your life</b> — weekly hours (2–15), work mode, locations</li>
+    <p class="kicker r1">BEAT 03 · ACT 1 — KNOW YOURSELF</p>
+    <h2 class="r2 a-blur">First, <span class="grad">it interviews you</span>.</h2>
+    <div class="cards grid3">
+      <div class="card feat r3 a-flip">
+        <h3><span class="fnum">01</span>Career assessment</h3>
+        <p>Six short steps: education, skills with honest self-ratings (Beginner → Advanced), interests, goals, experience, weekly hours (2–15). Save as you go, edit forever.</p>
+        <ul class="dots-mini">
+          <li><b>15+ profile signals</b> captured</li>
+          <li>Autosaved to your account — resumable anytime</li>
+          <li>Zod-validated on both ends</li>
         </ul>
-        <p class="mini">The better the input, the sharper everything downstream. Garbage in is not an option here.</p>
       </div>
-      <div class="split-r r4 a-flip">
-        <div class="techcard">
-          <div class="techcard-head">UNDER THE HOOD</div>
-          <div class="mono-lines">
-            <span><i>save</i> PUT /api/profile</span>
-            <span><i>persist</i> Firestore · users/<b>{uid}</b>.assessment</span>
-            <span><i>autosave</i> every step, resumable later</span>
-            <span><i>validation</i> Zod schema, both ends</span>
-            <span><i>signals</i> 15+ profile data points</span>
-            <span><i>skill levels</i> Beginner · Intermediate · Advanced</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 8 · CAREER MATCHING ───────────────────────── -->
-<section class="slide" data-title="AI Career Matching">
-  <div class="glow gb"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 02</p>
-    <h2 class="r2 a-blur">AI Career Matching — <span class="grad">a verdict with reasons</span>, not just a number.</h2>
-    <div class="split">
-      <div class="split-l r3 a-left">
-        <p class="big-copy">Gemini reads your entire assessment and returns 4–5 careers that actually fit — each with a match score <b>and the argument behind it</b>.</p>
-        <div class="match-demo">
+      <div class="card feat r4 a-flip">
+        <h3><span class="fnum">02</span>AI career matching</h3>
+        <div class="match-mini">
           <div class="match-row"><span class="match-title">Data Analyst</span><div class="match-bar"><div class="match-fill" style="--w:88%"></div></div><span class="match-pct">88%</span></div>
           <div class="match-row"><span class="match-title">UX Researcher</span><div class="match-bar"><div class="match-fill" style="--w:76%"></div></div><span class="match-pct">76%</span></div>
           <div class="match-row"><span class="match-title">Product Analyst</span><div class="match-bar"><div class="match-fill" style="--w:69%"></div></div><span class="match-pct">69%</span></div>
         </div>
-        <p class="mini">Each match ships with: <b>why it fits · your strengths · a practical entry path · the honest challenge ahead</b>. Estimates, not verdicts — the app tells you so itself.</p>
+        <p>4–5 careers, each with match %, <b>why it fits</b>, your strengths, an entry path — and the honest challenges ahead. Estimates, never verdicts.</p>
       </div>
-      <div class="split-r r4 a-flip">
-        <div class="techcard">
-          <div class="techcard-head">UNDER THE HOOD</div>
-          <div class="mono-lines">
-            <span><i>call</i> POST /api/ai/analyze-careers</span>
-            <span><i>model</i> Google Gemini (Flash class)</span>
-            <span><i>mode</i> strict JSON output · temp 0.3</span>
-            <span><i>range</i> matchPercent 55 – 95, always honest</span>
-            <span><i>shape</i> title · reason · strengths[] · entryPath · challenges</span>
-            <span><i>store</i> batch-written to Firestore per career</span>
-            <span><i>guard</i> Zod-validated before it reaches you</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 9 · SKILL GAP ───────────────────────── -->
-<section class="slide" data-title="Skill Gap Map">
-  <div class="glow ga"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 03</p>
-    <h2 class="r2 a-blur">Skill Gap Map — <span class="grad">stop learning random things</span>.</h2>
-    <div class="split">
-      <div class="split-l r3 a-left">
-        <p class="big-copy">Every skill measured against your target career: where you are, where the role needs you, and what to fix <b>first</b>.</p>
-        <ul class="ticks">
-          <li><b>6–10 gaps</b> mapped per career — current level vs required level</li>
-          <li><b>High / Medium / Low priority</b> so effort goes where it pays</li>
-          <li><b>Strengths highlighted too</b> — you bring more than you think</li>
-          <li>Gaps flow <b>directly into your roadmap tasks</b> — nothing is decorative</li>
+      <div class="card feat r5 a-flip">
+        <h3><span class="fnum">03</span>Skill gap map</h3>
+        <p>6–10 gaps measured against your target role: current level vs required level, ranked <b>High / Medium / Low priority</b> — strengths highlighted too.</p>
+        <ul class="dots-mini">
+          <li>Gaps feed <b>directly into your roadmap</b> — nothing is decorative</li>
+          <li>Top-8 gaps also ground the AI coach</li>
         </ul>
-        <p class="mini">This is the slide that turns anxiety into a checklist.</p>
-      </div>
-      <div class="split-r r4 a-flip">
-        <div class="techcard">
-          <div class="techcard-head">UNDER THE HOOD</div>
-          <div class="mono-lines">
-            <span><i>source</i> Gemini learning-path generation</span>
-            <span><i>shape</i> name · currentLevel · requiredLevel · priority · status</span>
-            <span><i>store</i> careers/<b>{id}</b>/skillGap/<b>{skill}</b></span>
-            <span><i>feed</i> top-8 gaps injected into AI-coach context</span>
-            <span><i>levels</i> Beginner → Intermediate → Advanced → Expert</span>
-          </div>
-        </div>
       </div>
     </div>
+    <div class="tech-footer r6">POST /api/ai/analyze-careers · Gemini JSON mode · temp 0.3 · matchPercent capped 55–95 (honesty by constraint) · Zod-validated · batch-written to Firestore</div>
   </div>
 </section>
 
-<!-- ───────────────────────── SLIDE 10 · ROADMAP ───────────────────────── -->
-<section class="slide" data-title="7-Phase Roadmap">
+<!-- ───────────── SLIDE 6 · ACT 2 — THE PLAN (roadmap + projects) ───────────── -->
+<section class="slide tight" data-title="06 · Act 2 · The Plan">
   <div class="glow gb"></div>
   <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 04</p>
-    <h2 class="r2 a-blur">The 7-Phase Roadmap — <span class="grad">a plan sized for your week</span>, not a fantasy.</h2>
-    <div class="phase-flow">
-      <div class="phase r2 a-pop"><b>01</b>Foundations</div>
-      <div class="phase r2 a-pop"><b>02</b>Core Applications</div>
-      <div class="phase r3 a-pop"><b>03</b>Advanced Topics</div>
-      <div class="phase r3 a-pop"><b>04</b>Integration</div>
-      <div class="phase r4 a-pop"><b>05</b>Projects</div>
-      <div class="phase r4 a-pop"><b>06</b>Resume & LinkedIn</div>
-      <div class="phase r5 a-pop"><b>07</b>Interview Prep</div>
+    <p class="kicker r1">BEAT 04 · ACT 2 — BUILD THE PLAN</p>
+    <h2 class="r2 a-blur">A plan sized for <span class="grad">your week</span> — not a fantasy.</h2>
+    <div class="phase-flow r2">
+      <div class="phase a-pop"><b>01</b>Foundations</div>
+      <div class="phase a-pop"><b>02</b>Core Apps</div>
+      <div class="phase a-pop"><b>03</b>Advanced</div>
+      <div class="phase a-pop"><b>04</b>Integration</div>
+      <div class="phase a-pop"><b>05</b>Projects</div>
+      <div class="phase a-pop"><b>06</b>Resume</div>
+      <div class="phase a-pop"><b>07</b>Interview</div>
     </div>
-    <div class="split" style="margin-top:2.2rem">
-      <div class="split-l r5 a-left">
-        <ul class="ticks">
-          <li>Every task carries a <b>title, target skill, estimated hours, and the <em>why</em></b></li>
-          <li><b>One-click check-off</b> — progress syncs to your dashboard instantly</li>
-          <li>Phase % tracked live; roadmap % drives your home screen</li>
-        </ul>
+    <div class="cards grid2" style="margin-top:1.4rem">
+      <div class="card feat r3 a-left">
+        <h3><span class="fnum">04</span>The 7-phase roadmap</h3>
+        <p>Every task carries a <b>title, target skill, estimated hours, and the <i>why</i></b>. One-click check-off — progress % updates your dashboard instantly via Firestore transactions. No lost check-offs, ever.</p>
+        <ul class="dots-mini"><li>Phases 5–7 are pinned: Projects · Resume & LinkedIn · Interview Prep</li></ul>
       </div>
-      <div class="split-r r6 a-flip">
-        <div class="techcard">
-          <div class="techcard-head">UNDER THE HOOD</div>
-          <div class="mono-lines">
-            <span><i>shape</i> exactly 7 phases · tasks[{id,title,skill,hours,why,done}]</span>
-            <span><i>store</i> careers/<b>{id}</b>/roadmap/<b>{phase}</b> · ordered</span>
-            <span><i>updates</i> Firestore transactions — no lost check-offs</span>
-            <span><i>normalize</i> phases 5–7 pinned: Projects · Resume · Interview</span>
-          </div>
-        </div>
+      <div class="card feat r4 a-right">
+        <h3><span class="fnum">05</span>Portfolio projects</h3>
+        <p>Three projects generated to match <b>your</b> gaps and career — each with difficulty, the skills it proves, and what to build. <b>Mark as built</b> → auto-completes the linked roadmap task and shows on your dashboard.</p>
+        <ul class="dots-mini"><li>Anyone can say "I'm learning data analysis." You'll have the repo.</li></ul>
       </div>
     </div>
+    <div class="tech-footer r5">POST /api/ai/generate-learning-path · careers/{id}/roadmap/{phase} · atomic batch writes · PATCH tasks & projects · progress linked across modules</div>
   </div>
 </section>
 
-<!-- ───────────────────────── SLIDE 11 · PROJECTS ───────────────────────── -->
-<section class="slide" data-title="Portfolio Projects">
+<!-- ───────────── SLIDE 7 · ACT 3 — THE PROOF (resume + interviews) ───────────── -->
+<section class="slide tight" data-title="07 · Act 3 · The Proof">
   <div class="glow ga"></div>
   <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 05</p>
-    <h2 class="r2 a-blur">Portfolio Projects — <span class="grad">proof beats promises</span>.</h2>
-    <div class="split">
-      <div class="split-l r3 a-left">
-        <p class="big-copy">Three portfolio projects generated to match <b>your</b> gaps and career — each with difficulty, the skills it proves, and a mark-as-built switch.</p>
-        <ul class="ticks">
-          <li>Descriptions that say exactly <b>what to build and why it matters</b></li>
-          <li><b>Mark as built</b> → auto-completes the linked roadmap phase task</li>
-          <li>Build count surfaces on your dashboard & progress tracker</li>
-        </ul>
-        <p class="mini">Anyone can say "I'm learning data analysis." You'll have the repo.</p>
-      </div>
-      <div class="split-r r4 a-flip">
-        <div class="techcard">
-          <div class="techcard-head">UNDER THE HOOD</div>
-          <div class="mono-lines">
-            <span><i>shape</i> title · description · difficulty · skills[] · done</span>
-            <span><i>store</i> careers/<b>{id}</b>/projects/<b>{proj}</b></span>
-            <span><i>link</i> build=true → roadmap "Projects" task completes</span>
-            <span><i>count</i> dashboard shows built vs total, live</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 12 · RESUME ───────────────────────── -->
-<section class="slide" data-title="Resume Analyzer">
-  <div class="glow gb"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 06</p>
-    <h2 class="r2 a-blur">Resume Analyzer — <span class="grad">rejected by a robot? Beat the robot</span>.</h2>
-    <div class="split">
-      <div class="split-l r3 a-left">
-        <p class="big-copy">Drop your PDF. Get a 0–100 score, an honest label, 3–5 strengths and 3–5 specific fixes — tuned to the career <em>you're actually targeting</em>.</p>
-        <ul class="ticks">
-          <li>Labels: <b>Needs Work · Fair · Good · Excellent</b></li>
-          <li>Feedback references <b>your active career</b>, not generic resume tips</li>
+    <p class="kicker r1">BEAT 05 · ACT 3 — PROVE IT</p>
+    <h2 class="r2 a-blur">Remember the ATS black hole?<br><span class="grad">This is where you beat it.</span></h2>
+    <div class="cards grid2">
+      <div class="card feat r3 a-left">
+        <h3><span class="fnum">06</span>Resume analyzer</h3>
+        <p>Drop a PDF → a 0–100 score, an honest label (<b>Needs Work · Fair · Good · Excellent</b>), 3–5 strengths and 3–5 specific fixes — tuned to the career <i>you're</i> targeting, not generic tips.</p>
+        <ul class="dots-mini">
+          <li><b>Privacy:</b> your PDF auto-deletes ~1 hour after analysis. Always.</li>
           <li>Completes your roadmap's resume task automatically</li>
-          <li><b>Privacy:</b> your PDF is auto-deleted ~1 hour after analysis. Always.</li>
         </ul>
-        <p class="mini">The score is called an "AI estimate" on screen — honesty is a feature here.</p>
       </div>
-      <div class="split-r r4 a-flip">
-        <div class="techcard">
-          <div class="techcard-head">UNDER THE HOOD</div>
-          <div class="mono-lines">
-            <span><i>upload</i> PDF only · ≤ 5 MB · presigned URL (300s TTL) or direct server PUT</span>
-            <span><i>verify</i> %PDF- magic-byte check + content-type + size</span>
-            <span><i>ai</i> Gemini vision reads the PDF (base64 inline data)</span>
-            <span><i>store</i> score kept · file in private Backblaze B2 bucket</span>
-            <span><i>purge</i> cron deletes files hourly + version history</span>
-            <span><i>quota</i> 5 analyses / day</span>
-          </div>
-        </div>
+      <div class="card feat r4 a-right">
+        <h3><span class="fnum">07</span>Mock interviews</h3>
+        <p>Pick role × type (behavioral / technical) × difficulty → exactly <b>six questions</b>. Every answer gets coaching back: <b class="good">Strength:</b> one specific observation, <b class="bad">Improvement:</b> one practical fix, plus a 0–100 score. Session ends with your average.</p>
+        <ul class="dots-mini"><li>Fail six times for free — and score higher each time</li></ul>
       </div>
     </div>
+    <div class="tech-footer r5">POST /api/resumes/analyze · Gemini vision reads the PDF (base64 inline) · %PDF- magic-byte check · presigned B2 upload, 300s TTL · private bucket · quotas: 5 scans · 10 sessions · 60 answers per day</div>
   </div>
 </section>
 
-<!-- ───────────────────────── SLIDE 13 · INTERVIEWS ───────────────────────── -->
-<section class="slide" data-title="Mock Interviews">
-  <div class="glow ga"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 07</p>
-    <h2 class="r2 a-blur">Mock Interviews — <span class="grad">rehearse where mistakes are free</span>.</h2>
-    <div class="split">
-      <div class="split-l r3 a-left">
-        <p class="big-copy">Pick a role, a type — behavioral or technical — and a difficulty. Get exactly <b>six questions</b>. Answer each one, and get coaching back.</p>
-        <div class="fb-demo r4 a-drop">
-          <div class="fb-q"><b>Q3.</b> "Tell me about a time a project went sideways."</div>
-          <div class="fb-a"><b class="good">Strength:</b> You named the conflict and your role in it — concrete, not vague.</div>
-          <div class="fb-a"><b class="bad">Improvement:</b> End with the result. What changed because of you?</div>
-          <div class="fb-score">this answer: <b>78 / 100</b></div>
-        </div>
-        <p class="mini r5">Session ends with your average score. Completing a session ticks your roadmap's interview task. Practice becomes progress.</p>
-      </div>
-      <div class="split-r r5 a-flip">
-        <div class="techcard">
-          <div class="techcard-head">UNDER THE HOOD</div>
-          <div class="mono-lines">
-            <span><i>setup</i> role × type × difficulty → 6 questions</span>
-            <span><i>feedback</i> "Strength:" + "Improvement:" · score 0–100</span>
-            <span><i>state</i> session stored server-side · resume anytime</span>
-            <span><i>score</i> average across answers on completion</span>
-            <span><i>quota</i> 10 sessions · 60 answers / day</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 14 · OPPORTUNITIES ───────────────────────── -->
-<section class="slide" data-title="Live Opportunities">
+<!-- ───────────── SLIDE 8 · ACT 4 — THE LAUNCH (jobs + coach + community) ───────────── -->
+<section class="slide tight" data-title="08 · Act 4 · The Launch">
   <div class="glow gb"></div>
   <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 08</p>
-    <h2 class="r2 a-blur">Live Opportunities — <span class="grad">real jobs, not motivational posters</span>.</h2>
-    <div class="split">
-      <div class="split-l r3 a-left">
-        <p class="big-copy">The platform searches <b>Remotive's live remote-job API</b> using <em>your</em> active career title — then filters by <em>your</em> preferred locations and work mode.</p>
-        <ul class="ticks">
-          <li><b>Internships and jobs</b> matched and separated for you</li>
-          <li>Location-aware: Worldwide / Remote / your cities</li>
-          <li>Saved to your account with source links — <b>your shortlist survives refreshes</b></li>
-          <li>You get a notification the moment new matches land</li>
-        </ul>
-        <p class="mini">Plan → proof → postings. The loop closes.</p>
-      </div>
-      <div class="split-r r4 a-flip">
-        <div class="techcard">
-          <div class="techcard-head">UNDER THE HOOD</div>
-          <div class="mono-lines">
-            <span><i>source</i> Remotive public API · no key needed</span>
-            <span><i>search</i> "{career} internship" + "{career}" · 40 fetched</span>
-            <span><i>filter</i> location match · work-mode aware (Any/Remote)</span>
-            <span><i>keep</i> top 20 per type → Firestore replace-batch</span>
-            <span><i>quota</i> 5 refreshes / day · 12s timeout guard</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 15 · AI COACH ───────────────────────── -->
-<section class="slide" data-title="AI Career Coach">
-  <div class="glow ga"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 09</p>
-    <h2 class="r2 a-blur">AI Career Coach — <span class="grad">ChatGPT doesn't know you</span>. This one does.</h2>
-    <div class="split">
-      <div class="split-l r3 a-left">
-        <p class="big-copy">A coach grounded in <b>your actual account</b>: your career, your gaps, your roadmap progress, your last resume score, your interview history.</p>
-        <div class="chat-demo r4">
-          <div class="cb user a-right">"Am I ready to apply for data analyst internships?"</div>
-          <div class="cb bot a-left">"Your SQL gap is at Intermediate with a 3-task phase remaining, and your last resume scored 61/Fair. Fix the two bullet-point issues it flagged, finish Phase 3, and you're a credible applicant for entry-level roles. Want the exact tasks?"</div>
-        </div>
-        <p class="mini r5">History saved and resumable. <b>100 messages/day.</b> Guardrails built in: no invented facts, no fake promises — and if you're distressed, it points you to real humans.</p>
-      </div>
-      <div class="split-r r5 a-flip">
-        <div class="techcard">
-          <div class="techcard-head">UNDER THE HOOD</div>
-          <div class="mono-lines">
-            <span><i>context</i> education · skills · career · top-8 gaps</span>
-            <span><i>+</i> roadmap % · resume score · interview score</span>
-            <span><i>memory</i> last 20 messages + saved sessions</span>
-            <span><i>limits</i> 3,000 chars/msg · 100 msgs/day</span>
-            <span><i>safety</i> anti-fabrication + empathy guardrails</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 16 · COMMUNITY ───────────────────────── -->
-<section class="slide" data-title="Community & Progress">
-  <div class="glow gb"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT II · FEATURE 10</p>
-    <h2 class="r2 a-blur">Community + Progress — <span class="grad">because nobody ascends alone</span>.</h2>
+    <p class="kicker r1">BEAT 06 · ACT 4 — GET HIRED</p>
+    <h2 class="r2 a-blur">The loop closes with <span class="grad">real jobs</span>.</h2>
     <div class="cards grid3">
-      <div class="card r3 a-flip"><div class="card-ico">◈</div><h3>Community feed</h3><p>Posts across <b>6 categories</b> — Career direction · Applications & job search · Resume & portfolio · Interviews · Skills & learning · Workplace. Comment threads with live counts. Real people, same climb.</p></div>
-      <div class="card r4 a-flip"><div class="card-ico">🔔</div><h3>Notification engine</h3><p>Every AI result — matches ready, resume reviewed, interview scored, jobs found — lands as an in-app notification with unread badges. The system <b>follows up on you</b>.</p></div>
-      <div class="card r5 a-flip"><div class="card-ico">▲</div><h3>Progress tracker</h3><p>Roadmap %, skills learned, projects built, resume score, average interview score — one honest dashboard. <b>"No invented milestones"</b> is literally the product's own copy.</p></div>
+      <div class="card feat r3 a-flip">
+        <h3><span class="fnum">08</span>Live opportunities</h3>
+        <p>Searches <b>Remotive's live remote-job API</b> with your active career title, filtered by <b>your</b> locations and work mode. Internships and jobs separated, shortlist saved with source links.</p>
+        <ul class="dots-mini"><li>You get a notification the moment matches land</li></ul>
+      </div>
+      <div class="card feat r4 a-flip">
+        <h3><span class="fnum">09</span>AI career coach</h3>
+        <p>ChatGPT doesn't know you. This one answers from <b>your live account</b> — your gaps, roadmap %, resume score, interview history. Guardrails: no invented facts, no fake promises.</p>
+        <ul class="dots-mini"><li>100 messages/day · history saved & resumable</li></ul>
+      </div>
+      <div class="card feat r5 a-flip">
+        <h3><span class="fnum">10</span>Community + momentum</h3>
+        <p>A feed across <b>6 categories</b> with comment threads, notifications for every AI result, a progress tracker — <i>"no invented milestones"</i> — and a live presence indicator.</p>
+        <ul class="dots-mini"><li>Real people, same climb</li></ul>
+      </div>
     </div>
-    <p class="footer-line r6">Plus: live presence indicator (who's online), saved chat sessions, editable profile with avatar uploads.</p>
+    <div class="tech-footer r6">GET/POST /api/opportunities → Remotive (no key) · 12s timeout · location + work-mode filter · replace-batch to Firestore · POST /api/ai/chat grounded in live Firestore · 3,000 chars/msg</div>
   </div>
 </section>
 
-<!-- ───────────────────────── SLIDE 17 · ARCHITECTURE ───────────────────────── -->
-<section class="slide" data-title="Architecture">
+<!-- ───────────── SLIDE 9 · THE MACHINE (architecture + stacks) ───────────── -->
+<section class="slide tight" data-title="09 · The Machine">
   <div class="glow ga"></div>
   <div class="inner">
-    <p class="kicker r1">ACT III · THE ENGINEERING</p>
-    <h2 class="r2 a-blur">System Architecture — <span class="grad">one diagram, zero hand-waving</span>.</h2>
-    <div class="arch">
-      <div class="arch-tier r3 a-drop">
-        <div class="arch-card ac-client">
-          <h4>YOUR BROWSER</h4>
-          <p>React 19 SPA · 12 modules · dark UI</p>
-          <div class="arch-tags"><span>Firebase JS SDK (auth only)</span><span>TanStack Query</span><span>session cookie sent automatically</span></div>
+    <p class="kicker r1">BEAT 07 · FOR THE ENGINEERS IN THE ROOM</p>
+    <h2 class="r2 a-blur">One diagram, <span class="grad">zero hand-waving</span>.</h2>
+    <div class="arch-compact">
+      <div class="arch r3 a-left">
+        <div class="arch-tier">
+          <div class="arch-card ac-client">
+            <h4>YOUR BROWSER</h4>
+            <p>React 19 SPA · 12 modules · dark UI · session cookie sent automatically</p>
+          </div>
+        </div>
+        <div class="conn"><i></i></div>
+        <div class="arch-tier two">
+          <div class="arch-card"><h4>STATIC EDGE (CDN)</h4><p>Vite build · SPA rewrites</p></div>
+          <div class="arch-card ac-api"><h4>SERVERLESS API · /api/*</h4><p>Express 5 · Node 24 · 60s budget · all secrets live here — and only here</p></div>
+        </div>
+        <div class="conn wide"><i></i></div>
+        <div class="arch-tier five">
+          <div class="arch-card mini"><h4>Firebase</h4><p>Auth · Admin SDK · Firestore · Realtime DB presence</p></div>
+          <div class="arch-card mini"><h4>Gemini</h4><p>JSON-mode AI · REST + SDK fallback</p></div>
+          <div class="arch-card mini"><h4>Backblaze B2</h4><p>private bucket · S3 API · presigned PUTs</p></div>
+          <div class="arch-card mini"><h4>ImgBB</h4><p>avatars · data-URI fallback</p></div>
+          <div class="arch-card mini"><h4>Remotive</h4><p>live remote jobs</p></div>
         </div>
       </div>
-      <div class="conn r3"><i></i></div>
-      <div class="arch-tier two r4 a-drop">
-        <div class="arch-card"><h4>STATIC EDGE (CDN)</h4><p>Vite build · SPA rewrites · instant loads</p></div>
-        <div class="arch-card ac-api"><h4>SERVERLESS API · /api/*</h4><p>Express 5 · Node 24 · 60s budget · all secrets live here — and only here</p></div>
+      <div class="r4 a-right">
+        <p class="col-label">FRONTEND</p>
+        <div class="stack-chips">
+          <span>React 19 + TypeScript</span><span>Vite</span><span>Tailwind v4 + shadcn/ui (Radix)</span><span>TanStack Query</span><span>Wouter — 2KB router</span><span>Framer Motion</span><span>Firebase SDK (auth only)</span><span>ARIA + keyboard a11y</span>
+        </div>
+        <p class="col-label">BACKEND</p>
+        <div class="stack-chips">
+          <span>Express 5 · Node 24</span><span>esbuild → one serverless bundle</span><span>Firebase Admin SDK 14</span><span>@google/genai + raw REST</span><span>AWS SDK (S3-compatible)</span><span>Zod everywhere</span><span>Pino logging</span><span>pnpm monorepo · 7 packages</span>
+        </div>
+        <p class="col-label">CONTRACT</p>
+        <div class="stack-chips">
+          <span>openapi.yaml → Orval codegen → Zod + typed React-Query client</span><span>tsc --build gates every deploy</span>
+        </div>
       </div>
-      <div class="conn wide r4"><i></i></div>
-      <div class="arch-tier five r5 a-drop">
-        <div class="arch-card mini"><h4>Firebase</h4><p>Auth · Admin SDK · Firestore · Realtime DB presence</p></div>
-        <div class="arch-card mini"><h4>Google Gemini</h4><p>JSON-mode career AI · REST + SDK fallback</p></div>
-        <div class="arch-card mini"><h4>Backblaze B2</h4><p>private bucket · S3 API · presigned PUTs</p></div>
-        <div class="arch-card mini"><h4>ImgBB</h4><p>avatar hosting · data-URI fallback</p></div>
-        <div class="arch-card mini"><h4>Remotive</h4><p>live remote jobs & internships</p></div>
-      </div>
     </div>
-    <p class="footer-line r6">The browser <b>never talks to Gemini, B2, or the database directly</b>. One hardened gatekeeper: the API.</p>
+    <p class="footer-line r5">The browser <b>never talks to Gemini, B2, or the database directly</b>. One hardened gatekeeper: the API.</p>
   </div>
 </section>
 
-<!-- ───────────────────────── SLIDE 18 · FRONTEND STACK ───────────────────────── -->
-<section class="slide" data-title="Frontend Stack">
+<!-- ───────────── SLIDE 10 · THE GUARDRAILS (AI · security · data · reliability · types · deploy) ───────────── -->
+<section class="slide tight" data-title="10 · The Guardrails">
   <div class="glow gb"></div>
   <div class="inner">
-    <p class="kicker r1">ACT III · THE ENGINEERING</p>
-    <h2 class="r2 a-blur">Frontend — <span class="grad">built like a product, not a demo</span>.</h2>
-    <div class="stack-grid">
-      <div class="stack r2 a-left"><b>React 19 + TypeScript</b><span>strict types end-to-end; UI is 900+ lines of purpose-built components</span></div>
-      <div class="stack r2 a-right"><b>Vite</b><span>instant HMR dev server, optimized production bundles, env-based config</span></div>
-      <div class="stack r3 a-left"><b>Tailwind CSS v4 + shadcn/ui (Radix)</b><span>50+ accessible primitives — dialogs, selects, toasts — on a custom dark theme</span></div>
-      <div class="stack r3 a-right"><b>TanStack React Query</b><span>server state: caching, invalidation, exponential-backoff retries, auto-recovery</span></div>
-      <div class="stack r4 a-left"><b>Wouter</b><span>2KB router — the whole SPA feel at a fraction of React Router's weight</span></div>
-      <div class="stack r4 a-right"><b>Framer Motion · Lucide · Recharts</b><span>motion, 100+ icons, and chart-ready visualization</span></div>
-      <div class="stack r5 a-left"><b>Firebase JS SDK v13</b><span>sign-in flows + Realtime DB presence only — never data access</span></div>
-      <div class="stack r5 a-right"><b>Accessibility & polish</b><span>ARIA roles, keyboard-navigable menus, focus management, skeleton states</span></div>
+    <p class="kicker good r1">BEAT 08 · BUILT LIKE A PRODUCT, NOT A HOMEWORK ASSIGNMENT</p>
+    <h2 class="r2 a-blur">The parts you only appreciate <span class="grad">when things break</span>.</h2>
+    <div class="guard-grid">
+      <div class="card guard r2 a-flip"><h3>🛡 The AI engine</h3><span class="mono-small">prompt → JSON mode (temp 0.3) → REST + SDK fallback → Zod parse</span><p>Dual-path with 20s aborts and candidate Flash models. Scores labeled <b>"AI estimate"</b>. The coach refuses to invent facts or promise outcomes — and redirects legal questions to official sources.</p></div>
+      <div class="card guard r3 a-flip"><h3>🔐 Zero-trust security</h3><span class="mono-small">firestore.rules → allow read, write: if false</span><p>The browser cannot touch data — everything flows through the authenticated Admin SDK. 5-day <b>httpOnly · secure · SameSite</b> session cookies, minted only if sign-in is &lt;5 min old. <b>0 keys in the browser.</b></p></div>
+      <div class="card guard r3 a-flip"><h3>🧹 Privacy + fair use</h3><span class="mono-small">resumes/{uid}/ · path-traversal blocked · timingSafeEqual cron</span><p>Resumes live in a private B2 bucket and <b>self-destruct in ~1 hour</b> (cron 17 3 * * *). Daily quotas in Firestore transactions: 100 chats · 5 resume scans · 10 interviews · 60 answers · 5 job refreshes.</p></div>
+      <div class="card guard r4 a-flip"><h3>🗂 Data model</h3><span class="mono-small">users/{uid} → careers/{id} → skillGap · roadmap · projects · opportunities</span><p>Plus resumes · interviews · chat · notifications · usage/{date} · communityPosts. <b>Atomic batches + transactions</b> — concurrent clicks can't double-count, and the usage ledger powers quotas with zero extra infrastructure.</p></div>
+      <div class="card guard r4 a-flip"><h3>⏳ Reliability</h3><span class="mono-small">retry 1s → 2s → 4s (cap 6s) · healthz poll 30s / 6s</span><p>Graceful degradation everywhere: saved matches survive AI outages, writes race 3–4s DB timeouts so responses never hang, ImgBB falls back to data URIs, Remotive capped at 12s. <b>A failed feature is a notice, never a broken app.</b></p></div>
+      <div class="card guard r5 a-flip"><h3>⚙ Types & deploy</h3><span class="mono-small">openapi.yaml → Orval → Zod + typed React-Query hooks</span><p>Even Gemini's output passes the same validation — bad AI data dies at the border. Deploys to <b>Vercel</b>: static edge + one serverless function (60s), daily cron, <b>/api/healthz</b> + <b>/api/ai/diagnose</b> observability.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ───────────────────────── SLIDE 19 · BACKEND STACK ───────────────────────── -->
-<section class="slide" data-title="Backend Stack">
-  <div class="glow ga"></div>
+<!-- ───────────── SLIDE 11 · THE CHOICE (mirror + turn + close) ───────────── -->
+<section class="slide tight s-mirror" data-title="11 · The Choice">
+  <div class="glow ga pain-glow"></div><div class="glow gb"></div>
   <div class="inner">
-    <p class="kicker r1">ACT III · THE ENGINEERING</p>
-    <h2 class="r2 a-blur">Backend — <span class="grad">a small surface area, obsessively hardened</span>.</h2>
-    <div class="stack-grid">
-      <div class="stack r2 a-left"><b>Express 5 on Node 24</b><span>one TypeScript API, ~30 REST endpoints, uniform error envelope</span></div>
-      <div class="stack r2 a-right"><b>esbuild → single bundle</b><span>the whole server ships as one serverless function; cold starts stay tiny</span></div>
-      <div class="stack r3 a-left"><b>Firebase Admin SDK 14</b><span>token verification, session-cookie minting, Firestore reads/writes — server only</span></div>
-      <div class="stack r3 a-right"><b>@google/genai + raw REST</b><span>Gemini with a dual-path strategy: direct REST first, SDK as backup</span></div>
-      <div class="stack r4 a-left"><b>AWS SDK (S3-compatible)</b><span>Backblaze B2 uploads, downloads, presigned URLs, version-aware deletes</span></div>
-      <div class="stack r4 a-right"><b>Zod everywhere</b><span>every request body, param and AI response parsed at the boundary</span></div>
-      <div class="stack r5 a-left"><b>Pino structured logging</b><span>request-scoped logs; failures diagnosed in seconds, not guesses</span></div>
-      <div class="stack r5 a-right"><b>pnpm monorepo</b><span>7 workspace packages share one lockfile, one typecheck, one build</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 20 · AI ENGINE ───────────────────────── -->
-<section class="slide" data-title="The AI Engine">
-  <div class="glow gb"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT III · THE ENGINEERING</p>
-    <h2 class="r2 a-blur">The AI Engine — <span class="grad">how you ship Gemini to real users</span> without embarrassing yourself.</h2>
-    <div class="ai-pipeline">
-      <div class="ai-step r2 a-pop"><b>1</b><span><b>Prompt engineering</b>role priming + strict JSON schema written in the prompt + guardrails ("never invent facts, never promise outcomes")</span></div>
-      <div class="ai-arrow r2">→</div>
-      <div class="ai-step r3 a-pop"><b>2</b><span><b>JSON mode</b>responseMimeType: application/json · temperature 0.3 · capped output tokens</span></div>
-      <div class="ai-arrow r3">→</div>
-      <div class="ai-step r4 a-pop"><b>3</b><span><b>Dual-path fallback</b>direct Google REST first → SDK backup → multiple candidate Flash models, 20s abort timers</span></div>
-      <div class="ai-arrow r4">→</div>
-      <div class="ai-step r5 a-pop"><b>4</b><span><b>Parse & validate</b>strip code fences → JSON.parse → Zod schema → invalid? 502, retry, never junk on screen</span></div>
-    </div>
-    <div class="cards grid3" style="margin-top:2rem">
-      <div class="card r5 a-flip"><h3>🛡 Anti-hallucination</h3><p>Scores are labeled "AI estimates". The coach is instructed to refuse invented facts and redirect legal/eligibility questions to official sources.</p></div>
-      <div class="card r6 a-flip"><h3>🧠 Context grounding</h3><p>Chat prompts are assembled from your live Firestore data — the AI answers about <em>you</em>, not about people in general.</p></div>
-      <div class="card r7 a-flip"><h3>💸 Abuse control</h3><p>Every AI call sits behind per-user daily quotas enforced in atomic Firestore transactions.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 21 · SECURITY ───────────────────────── -->
-<section class="slide" data-title="Security & Privacy">
-  <div class="glow ga"></div>
-  <div class="inner">
-    <p class="kicker good r1">ACT III · THE ENGINEERING — the slide your professor will remember</p>
-    <h2 class="r2 a-blur">Security & Privacy — <span class="grad">paranoid by design</span>.</h2>
-    <div class="sec-grid">
-      <div class="sec r2 a-flip"><b>🔐 Zero-trust database</b><p>Firestore rules: <code class="mono">allow read, write: if false</code> — the browser <b>cannot</b> touch data. Every read/write flows through the authenticated Admin SDK on the server.</p></div>
-      <div class="sec r3 a-flip"><b>🍪 HTTP-only sessions</b><p>5-day session cookie: <code class="mono">httpOnly · secure · SameSite=Lax</code>. Minted only if your sign-in is &lt;5 minutes old. JS can't steal what it can't read.</p></div>
-      <div class="sec r4 a-flip"><b>🔑 Secrets never ship</b><p>Gemini key, B2 keys, ImgBB key, service account — server env vars only. Stat from earlier: <b>0 keys in the browser</b>, verified.</p></div>
-      <div class="sec r5 a-flip"><b>🧹 Resumes self-destruct</b><p>Private B2 bucket · path-traversal blocked (<code class="mono">resumes/{uid}/</code> prefix + <code class="mono">..</code> checks) · auto-deleted ~1h by cron guarded with <code class="mono">timingSafeEqual</code> secret comparison.</p></div>
-      <div class="sec r6 a-flip"><b>🚦 Fair-use quotas</b><p>Per-user daily limits in Firestore transactions: 100 chats · 5 resume scans · 10 interviews · 60 answers · 5 job refreshes. No runaway bills, no abuse.</p></div>
-      <div class="sec r7 a-flip"><b>🧾 Input hygiene</b><p>Zod on every payload · filename sanitization · HTTPS-only image URLs · PDF magic-byte checks · comment/post length rules · ID format regex.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 22 · DATA MODEL ───────────────────────── -->
-<section class="slide" data-title="Data Model">
-  <div class="glow gb"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT III · THE ENGINEERING</p>
-    <h2 class="r2 a-blur">Data Model — <span class="grad">Firestore, structured like a file system of you</span>.</h2>
-    <div class="split">
-      <pre class="tree r3 a-left">users/<b>{uid}</b>
-├─ profile · assessment · activeCareerId
-├─ <b>careers</b>/{careerId}
-│  ├─ match: title · matchPercent · reason…
-│  ├─ <b>skillGap</b>/{skill}   current → required
-│  ├─ <b>roadmap</b>/{phase}    7 phases · tasks[]
-│  ├─ <b>projects</b>/{id}      title · skills · done
-│  └─ <b>opportunities</b>/{id} live listings
-├─ resumes · interviews · chat
-├─ notifications · usage/{date}</pre>
-      <pre class="tree r4 a-right">communityPosts/{id}
-├─ title · content · category
-├─ authorName · commentCount
-└─ <b>comments</b>/{id}
-
-resumeCleanupQueue/{sha256}
-└─ ownerUid · storagePath
-   deleteAfter → cron purge</pre>
-    </div>
-    <ul class="ticks inline-ticks r5">
-      <li><b>Atomic batch writes</b> — career analysis, learning paths and comment counts commit all-or-nothing</li>
-      <li><b>Transactions</b> for check-offs & quotas — concurrent clicks can't double-count</li>
-      <li><b>Usage ledger</b> per day enables quotas without any extra infrastructure</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 23 · RELIABILITY ───────────────────────── -->
-<section class="slide" data-title="Reliability">
-  <div class="glow ga"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT III · THE ENGINEERING</p>
-    <h2 class="r2 a-blur">Reliability — <span class="grad">built for the day everything breaks</span>.</h2>
-    <div class="cards grid3">
-      <div class="card r2 a-flip"><h3>Graceful degradation</h3><p>AI fails? Your saved matches stay untouched. DB slow? Writes race a 3–4s timeout so responses never hang. ImgBB down? Avatars fall back to inline data URIs. <b>Nothing takes the whole app down.</b></p></div>
-      <div class="card r3 a-flip"><h3>Self-healing client</h3><p>Retries with exponential backoff (1s → 2s → 4s, capped at 6s). Health endpoint polled every 30s — 6s while unhealthy — and the dashboard auto-refetches the moment the API breathes again.</p></div>
-      <div class="card r4 a-flip"><h3>Backpressure everywhere</h3><p>12s timeout on Remotive, 20s per model attempt on Gemini, 300s TTL on upload URLs, batched deletes (5 at a time, 25 per cron run) — the system protects itself and its providers.</p></div>
-    </div>
-    <p class="footer-line r5">Design rule: <b>a failed feature is a notice, never a broken app.</b></p>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 24 · TYPE SAFETY ───────────────────────── -->
-<section class="slide" data-title="Type-Safe Pipeline">
-  <div class="glow gb"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT III · THE ENGINEERING</p>
-    <h2 class="r2 a-blur">One contract, zero drift — <span class="grad">the type-safe pipeline</span>.</h2>
-    <div class="ai-pipeline">
-      <div class="ai-step r2 a-pop"><b>{ }</b><span><b>openapi.yaml</b>the API is specified first — routes, schemas, responses, as code</span></div>
-      <div class="ai-arrow r2">→</div>
-      <div class="ai-step r3 a-pop"><b>⚙</b><span><b>Orval codegen</b>generates Zod validators + a typed React-Query client automatically</span></div>
-      <div class="ai-arrow r3">→</div>
-      <div class="ai-step r4 a-pop"><b>⇄</b><span><b>api-server</b>handlers parse every request with the same Zod schemas</span></div>
-      <div class="ai-arrow r4">→</div>
-      <div class="ai-step r5 a-pop"><b>✓</b><span><b>Ascend UI</b>typed hooks end-to-end: change the contract, the build catches it</span></div>
-    </div>
-    <div class="cards grid2" style="margin-top:2rem">
-      <div class="card r5 a-flip"><h3>Contract-first API</h3><p>Frontend and backend literally share generated code from one OpenAPI spec — <b>@workspace/api-zod</b> and <b>@workspace/api-client-react</b>. No "works on my machine" types.</p></div>
-      <div class="card r6 a-flip"><h3>AI output is typed too</h3><p>Even Gemini's response passes through the same validation layer. Bad AI data dies at the border — it never reaches your screen.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 25 · DEPLOYMENT ───────────────────────── -->
-<section class="slide" data-title="Deploy & Ops">
-  <div class="glow ga"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT III · THE ENGINEERING</p>
-    <h2 class="r2 a-blur">Deploy & Ops — <span class="grad">git push, and it's on the internet</span>.</h2>
-    <div class="stack-grid">
-      <div class="stack r2 a-left"><b>Vercel</b><span>one push builds both packages → static edge + <code class="mono">/api</code> serverless function (60s max) with SPA rewrites</span></div>
-      <div class="stack r2 a-right"><b>Scheduled cron</b><span><code class="mono">17 3 * * *</code> — daily resume purge, authorized by a timing-safe bearer secret</span></div>
-      <div class="stack r3 a-left"><b>pnpm workspaces</b><span>7 packages, catalog-pinned versions, frozen lockfiles — reproducible everywhere</span></div>
-      <div class="stack r3 a-right"><b>Node 24 · TS strict</b><span>engine-pinned runtime; <code class="mono">tsc --build</code> gates every deploy — type errors don't ship</span></div>
-      <div class="stack r4 a-left"><b>Observability</b><span><code class="mono">/api/healthz</code> for uptime, <code class="mono">/api/ai/diagnose</code> for live model checks, Pino request logs</span></div>
-      <div class="stack r4 a-right"><b>Secrets discipline</b><span>12 environment variables, split browser-safe (VITE_*) vs server-only, documented in-repo</span></div>
-    </div>
-    <p class="footer-line r5">This isn't a localhost project. <b>It's a deployed, monitored, self-maintaining system.</b></p>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 26 · COMPARISON ───────────────────────── -->
-<section class="slide" data-title="The Verdict">
-  <div class="glow gb"></div>
-  <div class="inner">
-    <p class="kicker r1">ACT IV · THE VERDICT</p>
-    <h2 class="r2 a-blur">Why this beats every alternative you've actually got.</h2>
-    <table class="vs r3 a-blur">
-      <thead><tr><th></th><th>Career counselor</th><th>Job portals</th><th>Raw ChatGPT</th><th class="hero-col">AI Career Copilot</th></tr></thead>
-      <tbody>
-        <tr><td>Knows <em>your</em> profile</td><td class="bad">✕</td><td class="bad">✕</td><td class="warn">~</td><td class="good">✓ deep, stored, growing</td></tr>
-        <tr><td>Career matches with reasons</td><td class="warn">slow sessions</td><td class="bad">✕</td><td class="warn">generic</td><td class="good">✓ 4–5 scored matches</td></tr>
-        <tr><td>Personal learning roadmap</td><td class="warn">~</td><td class="bad">✕</td><td class="warn">one-off text</td><td class="good">✓ 7 phases, trackable</td></tr>
-        <tr><td>Resume scoring</td><td class="warn">manual</td><td class="bad">✕</td><td class="warn">no file target</td><td class="good">✓ PDF → 0–100 + fixes</td></tr>
-        <tr><td>Mock interviews + scoring</td><td class="bad">rare</td><td class="bad">✕</td><td class="warn">unstructured</td><td class="good">✓ 6 Qs, per-answer coach</td></tr>
-        <tr><td>Live jobs matched to you</td><td class="bad">✕</td><td class="warn">firehose</td><td class="bad">✕</td><td class="good">✓ location-filtered</td></tr>
-        <tr><td>Remembers & tracks progress</td><td class="warn">notebook</td><td class="bad">✕</td><td class="bad">✕</td><td class="good">✓ full account history</td></tr>
-        <tr><td>Cost & speed</td><td class="bad">expensive</td><td class="good">free</td><td class="good">free</td><td class="good">free · minutes</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 27 · THE MIRROR ───────────────────────── -->
-<section class="slide s-mirror" data-title="The Mirror">
-  <div class="glow ga pain-glow"></div><div class="glow gb pain-glow"></div>
-  <div class="inner">
-    <p class="kicker bad r1">ACT IV · THE MIRROR — the part nobody claps for</p>
-    <h2 class="r2 typewriter" data-text="This is how it ends — if nothing change today."></h2>
+    <p class="kicker bad r1">BEAT 09 · THE CLOSE — the part nobody claps for</p>
+    <h2 class="typewriter" data-text="This is how it ends — if nothing changes today."></h2>
     <div class="tl">
-      <div class="tl-step r3 a-drop"><span class="tl-year">YEAR 1</span><p>"I'll figure it out next semester."</p></div>
-      <div class="tl-step r4 a-drop"><span class="tl-year">YEAR 2</span><p>"Relax. I still have time."</p></div>
-      <div class="tl-step r5 a-drop"><span class="tl-year">YEAR 3</span><p>"Why does everyone else seem to know?"</p></div>
-      <div class="tl-step r6 a-drop"><span class="tl-year">FINAL YEAR</span><p>"Wait. Where did the time go?"</p></div>
+      <div class="tl-step r2 a-drop"><span class="tl-year">YEAR 1</span><p>"I'll figure it out next semester."</p></div>
+      <div class="tl-step r3 a-drop"><span class="tl-year">YEAR 2</span><p>"Relax. I still have time."</p></div>
+      <div class="tl-step r4 a-drop"><span class="tl-year">YEAR 3</span><p>"Why does everyone else seem to know?"</p></div>
+      <div class="tl-step r5 a-drop"><span class="tl-year">FINAL YEAR</span><p>"Wait. Where did the time go?"</p></div>
     </div>
-    <div class="cards grid4 mirror-cards">
-      <div class="card pain r4 a-left"><h3>Count the hours</h3><p>You've spent entire weekends choosing what to watch. Hours deciding what to <em>become</em>: nearly zero. That math is the mirror.</p></div>
-      <div class="card pain r5 a-right"><h3>Someone is living your plan</h3><p>A student with your exact skills made the one decision you keep postponing. They're getting the offer. You're getting this slide.</p></div>
-      <div class="card pain r6 a-left"><h3>The question is coming</h3><p>At the next family gathering, someone will ask about your plan. "I'm still exploring" is starting to sound like an apology.</p></div>
-      <div class="card pain r7 a-right"><h3>Nobody is coming</h3><p>Not placements. Not luck. Not a miracle internship. Confusion left unattended doesn't stay confusion —</p></div>
+    <p class="regret r5 a-glitch">— one day it gets a new name: <span class="bad">regret</span>.</p>
+    <div class="turn-compact">
+      <div class="mir-row r5"><div class="mir-from a-left"><span>Hours evaporating into the scroll</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>5 hours a week become visible, checkable skill</span></div></div>
+      <div class="mir-row r6"><div class="mir-from a-left"><span>Guessing what to become</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>4–5 real directions with reasons — in minutes</span></div></div>
+      <div class="mir-row r6"><div class="mir-from a-left"><span>Terror of the interview room</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>A room where you fail six times for free — and score higher each time</span></div></div>
+      <div class="mir-row r7"><div class="mir-from a-left"><span>Climbing alone, zero proof of progress</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>A community on the same hill + a tracker that receipts every step</span></div></div>
     </div>
-    <p class="regret a-glitch">— one day it gets a new name: <span class="bad">regret</span>.</p>
-    <p class="mirror-bridge">That's how this story ends for people who never decide.<br>Next slide: how it ends for people who do. →</p>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 28 · THE TURN ───────────────────────── -->
-<section class="slide" data-title="The Turn">
-  <div class="glow ga"></div><div class="glow gb"></div>
-  <div class="inner">
-    <p class="kicker good r1">ACT IV · THE TURN — same mirror, other reflection</p>
-    <h2 class="r2 a-blur">Every dark thing on that slide has a handle <span class="grad">on this side of the mirror</span>.</h2>
-    <div class="mir">
-      <div class="mir-row r3"><div class="mir-from a-left"><span>Hours evaporating into the scroll</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>A roadmap that turns 5 of those hours a week into visible, checkable skill</span></div></div>
-      <div class="mir-row r3"><div class="mir-from a-left"><span>Guessing what to become</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>Gemini names 4–5 real directions — with reasons, not vibes</span></div></div>
-      <div class="mir-row r4"><div class="mir-from a-left"><span>Terror of the interview room</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>A room where you can fail six times for free — and score higher each time</span></div></div>
-      <div class="mir-row r4"><div class="mir-from a-left"><span>A resume nobody reads</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>A score, a label, and the exact lines to fix — today, not someday</span></div></div>
-      <div class="mir-row r5"><div class="mir-from a-left"><span>Climbing alone</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>A community on the same hill — plus a coach that knows your file by heart</span></div></div>
-      <div class="mir-row r5"><div class="mir-from a-left"><span>Zero proof you're moving</span></div><div class="mir-arrow">⇢</div><div class="mir-to a-right"><span>A tracker that receipts every single step you take</span></div></div>
+    <div class="close-strip r7">
+      <div class="cta a-pop"><b>1</b><span>Open the app — deployed and live</span></div>
+      <div class="cta a-pop"><b>2</b><span>Six-step assessment, about six minutes</span></div>
+      <div class="cta a-pop"><b>3</b><span>Matches + roadmap before your coffee gets cold</span></div>
     </div>
-    <div class="turn-close r6 a-zoom">
-      <p>In five years, you'll either have a <b>story about how you started</b> — or an <b class="bad">excuse about why you didn't</b>. Both are being written right now.</p>
-      <p class="punch">Version two of you costs 6 minutes.<br>Version one has already cost you years.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────────────── SLIDE 29 · CLOSE ───────────────────────── -->
-<section class="slide s-title" data-title="The Close">
-  <div class="glow ga"></div><div class="glow gb"></div><div class="stars"></div>
-  <div class="inner center">
-    <p class="kicker good r1">ACT IV · THE CLOSE</p>
-    <h1 class="r2 a-zoom" style="font-size:clamp(2rem,5.2vw,4.4rem)">The best time to find your direction was yesterday.<br><span class="grad">The second-best time is right now.</span></h1>
-    <div class="cta-steps r3">
-      <div class="cta a-pop"><b>1</b><span>Open the app — it's deployed and live</span></div>
-      <div class="cta a-pop"><b>2</b><span>Six-step assessment. About six minutes.</span></div>
-      <div class="cta a-pop"><b>3</b><span>Career matches + your roadmap — before your coffee gets cold</span></div>
-    </div>
-    <p class="lede r4 a-blur">You'll either try it today, or forget it by dinner.<br><b>Choose the first.</b> Your future self is watching — make them grateful.</p>
-    <div class="title-meta r5">
-      <span>React 19 · Express 5 · Firebase · Gemini · Backblaze B2 · Vercel</span>
-    </div>
-    <p class="presenter r6">Thank you — questions welcome · <b>Nikita</b></p>
+    <p class="final-line r7">Version two of you costs 6 minutes. Version one has already cost you years. &nbsp;·&nbsp; <b>Thank you — Nikita Rai</b></p>
   </div>
 </section>
 

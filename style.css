@@ -53,7 +53,7 @@ body::before {
 .slide {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  padding: 4.5rem 4.5rem 5.5rem;
+  padding: 3.4rem 4rem 5.4rem;
   opacity: 0;
   transform: translateY(26px) scale(0.985);
   transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
@@ -208,25 +208,26 @@ h2 {
 
 /* ============ STAT STRIP ============ */
 .stat-strip {
-  display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;
-  margin-top: 2.6rem;
+  display: flex; justify-content: center; gap: 1.1rem; flex-wrap: wrap;
+  margin-top: 2rem;
 }
 .stat {
   background: var(--panel);
   border: 1px solid var(--panel-line);
   border-radius: 16px;
-  padding: 1.1rem 1.7rem;
-  min-width: 170px;
+  padding: 0.9rem 1.5rem;
+  min-width: 165px;
 }
 .stat b {
   display: block;
   font-family: var(--display);
-  font-size: 2.3rem;
+  font-size: 2.1rem;
   font-weight: 700;
   background: var(--grad);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .stat span { font-size: 0.8rem; color: var(--ink-dim); }
+.inner.center .lede { margin-top: 1.2rem; }
 
 /* ============ CARDS ============ */
 .cards { display: grid; gap: 1.2rem; }
@@ -290,13 +291,13 @@ h2 {
   background: var(--panel);
   border: 1px solid var(--panel-line);
   border-radius: 16px;
-  padding: 1.3rem 1.1rem;
+  padding: 1rem 0.95rem;
   transition: transform 0.35s var(--ease), border-color 0.35s;
 }
 .jstep:hover { transform: translateY(-5px); border-color: rgba(34,211,238,.5); }
 .jnum { font-family: var(--mono); font-size: 0.72rem; color: var(--cyan); letter-spacing: 0.2em; }
-.jstep h3 { font-family: var(--display); font-size: 1.15rem; margin: 0.5rem 0 0.6rem; letter-spacing: 0.04em; }
-.jstep p { font-size: 0.8rem; color: var(--ink-dim); line-height: 1.55; }
+.jstep h3 { font-family: var(--display); font-size: 1.1rem; margin: 0.4rem 0 0.45rem; letter-spacing: 0.04em; }
+.jstep p { font-size: 0.78rem; color: var(--ink-dim); line-height: 1.5; }
 .jstep p em { color: #a5b4fc; font-style: normal; }
 .jarrow {
   align-self: center;
@@ -892,6 +893,213 @@ h2 {
   .vs th, .vs td { padding: 0.5rem 0.5rem; }
   .hud-mid { display: none; }
   .overview-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================================
+   V3 — 10-slide story layout
+   ============================================================ */
+.tight h2 { margin-bottom: 1.3rem; }
+
+/* presenter story cue */
+.story-cue {
+  margin-top: 1.6rem;
+  padding: 0.6rem 1.1rem;
+  border-left: 2px solid var(--warn);
+  background: rgba(251, 191, 36, 0.05);
+  border-radius: 0 10px 10px 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: rgba(251, 191, 36, 0.92);
+}
+.inner.center .story-cue { text-align: center; border-left: none; border: 1px dashed rgba(251,191,36,.35); border-radius: 12px; }
+.tight .story-cue { margin-top: 1.15rem; }
+
+/* column labels */
+.col-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  color: var(--cyan);
+  margin-bottom: 0.6rem;
+}
+
+/* slide 2 — problem grid */
+.prob-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 2.4rem; align-items: start; }
+.pain-row { display: flex; gap: 0.9rem; padding: 0.62rem 0; border-bottom: 1px dashed rgba(255,255,255,0.07); align-items: flex-start; }
+.pain-row:last-child { border-bottom: none; }
+.pain-ico {
+  flex-shrink: 0; width: 30px; height: 30px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(251,113,133,.12); border: 1px solid rgba(251,113,133,.35); color: var(--bad);
+  font-size: 0.85rem;
+}
+.pain-row b { display: block; font-size: 0.92rem; color: var(--ink); margin-bottom: 0.1rem; }
+.pain-row p { font-size: 0.8rem; color: var(--ink-dim); line-height: 1.45; }
+.pain-row p i { color: #fda4af; }
+.cost-line { display: flex; align-items: baseline; gap: 1rem; padding: 0.62rem 0; border-bottom: 1px dashed rgba(255,255,255,0.07); }
+.cost-line:last-child { border-bottom: none; }
+.cost-line b {
+  flex-shrink: 0; min-width: 58px;
+  font-family: var(--display); font-size: 1.5rem; font-weight: 700; color: var(--bad);
+}
+.cost-line span { font-size: 0.82rem; color: var(--ink-dim); line-height: 1.45; }
+.punch-line {
+  margin-top: 1.6rem; text-align: center;
+  font-family: var(--display); font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+}
+.punch-line b { color: var(--bad); }
+
+/* slide 3 — vs strip */
+.vs-strip {
+  margin-top: 1.3rem;
+  border: 1px solid var(--panel-line);
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 0.75rem 1.2rem;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  text-align: center;
+  line-height: 1.6;
+}
+.vs-strip b { color: var(--good); }
+.vs-strip .vsep { color: var(--indigo); margin: 0 0.4rem; }
+
+/* feature cards (slides 4–7) */
+.card.feat h3 { font-size: 1rem; }
+.card.feat h3 .fnum { font-family: var(--mono); font-size: 0.72rem; color: var(--cyan); margin-right: 0.45rem; }
+.card.feat p { font-size: 0.84rem; }
+.card.feat p b { color: var(--ink); }
+.dots-mini { list-style: none; margin-top: 0.7rem; }
+.dots-mini li {
+  position: relative; padding: 0.2rem 0 0.2rem 1.15rem;
+  font-size: 0.78rem; color: var(--ink-dim); line-height: 1.45;
+}
+.dots-mini li::before { content: "▸"; position: absolute; left: 0; top: 0.28rem; color: var(--cyan); font-size: 0.65rem; }
+.dots-mini li b { color: var(--ink); }
+.match-mini { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.55rem 0 0.7rem; }
+.match-mini .match-row { grid-template-columns: 106px 1fr 44px; gap: 0.6rem; }
+.match-mini .match-bar { height: 8px; }
+.match-mini .match-title { font-size: 0.78rem; }
+.match-mini .match-pct { font-size: 0.75rem; }
+
+/* tech footer */
+.tech-footer {
+  margin-top: 1.4rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: #a5b4fc;
+  text-align: center;
+  background: rgba(99,102,241,.08);
+  border: 1px solid rgba(129,140,248,.25);
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  line-height: 1.6;
+}
+
+/* slide 8 — machine layout */
+.arch-compact { display: grid; grid-template-columns: 1.15fr 1fr; gap: 2.2rem; align-items: start; }
+.arch-compact .arch-card { padding: 0.8rem 1rem; }
+.arch-compact .arch-card h4 { font-size: 0.7rem; }
+.arch-compact .arch-card p { font-size: 0.72rem; }
+.stack-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+.stack-chips span {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: #a5b4fc; background: rgba(99,102,241,.1);
+  border: 1px solid rgba(129,140,248,.3);
+  border-radius: 99px; padding: 0.28rem 0.7rem;
+}
+
+/* slide 9 — guardrails grid */
+.guard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.card.guard { padding: 1rem 1.1rem; }
+.card.guard h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+.card.guard p { font-size: 0.78rem; line-height: 1.55; }
+.mono-small {
+  display: block;
+  font-family: var(--mono); font-size: 0.68rem; color: #a5b4fc;
+  background: rgba(99,102,241,.1); border-radius: 8px;
+  padding: 0.4rem 0.6rem; margin-bottom: 0.5rem; line-height: 1.6;
+}
+
+/* slide 10 — mirror + turn compaction */
+.s-mirror h2 { min-height: 1.3em; margin-bottom: 1rem; font-size: clamp(1.4rem, 2.8vw, 2.3rem); }
+.s-mirror .tl { margin-bottom: 0.8rem; }
+.s-mirror .tl-step { padding: 0.7rem 0.85rem; }
+.s-mirror .tl-step p { font-size: 0.76rem; }
+.s-mirror .regret { margin-top: 0.7rem; font-size: clamp(1rem, 1.7vw, 1.3rem); }
+.turn-compact { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.9rem; }
+.turn-compact .mir-row { grid-template-columns: 1fr 34px 1.35fr; gap: 0.7rem; }
+.turn-compact .mir-from, .turn-compact .mir-to { padding: 0.48rem 0.85rem; font-size: 0.78rem; }
+.close-strip { display: flex; gap: 0.9rem; justify-content: center; margin-top: 1.2rem; }
+.close-strip .cta { flex: 1; max-width: 300px; padding: 0.7rem 1rem; }
+.close-strip .cta b { width: 30px; height: 30px; font-size: 0.85rem; }
+.close-strip .cta span { font-size: 0.78rem; }
+.final-line { margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--ink-dim); }
+.final-line b { color: var(--ink); }
+
+/* v3 responsive */
+@media (max-width: 1100px) {
+  .prob-grid, .arch-compact { grid-template-columns: 1fr; }
+  .guard-grid { grid-template-columns: 1fr 1fr; }
+  .ts-grid { grid-template-columns: 1fr 1fr; }
+  .close-strip { flex-direction: column; align-items: center; }
+}
+@media (max-width: 640px) {
+  .guard-grid { grid-template-columns: 1fr; }
+  .ts-grid { grid-template-columns: 1fr; }
+}
+
+/* short screens / projectors */
+@media (max-height: 820px) {
+  .slide { padding: 2.4rem 3.4rem 5rem; }
+  h2 { margin-bottom: 1.1rem; }
+  .tight h2 { margin-bottom: 0.9rem; }
+  .lede { margin-top: 0.9rem; font-size: clamp(0.95rem, 1.5vw, 1.2rem); }
+  .story-cue { margin-top: 0.9rem; font-size: 0.72rem; }
+  .stat { padding: 0.75rem 1.2rem; min-width: 150px; }
+  .stat b { font-size: 1.8rem; }
+  .jstep { padding: 0.85rem 0.8rem; }
+  .jstep p { font-size: 0.72rem; }
+  .vs-strip { margin-top: 1rem; padding: 0.6rem 1rem; font-size: 0.8rem; }
+  .tech-footer { margin-top: 1rem; }
+  .card { padding: 1.05rem 1.05rem; }
+  .card p, .card.feat p, .card.guard p { font-size: 0.78rem; }
+  .punch-line { margin-top: 1rem; }
+  .prob-grid { gap: 1.6rem; }
+  .pain-row, .cost-line { padding: 0.42rem 0; }
+  .arch-compact { gap: 1.4rem; }
+  .guard-grid { gap: 0.8rem; }
+  .card.guard { padding: 0.85rem 0.95rem; }
+  .turn-compact { gap: 0.28rem; }
+  .close-strip { margin-top: 0.85rem; }
+  .tl-step p { font-size: 0.72rem; }
+  .final-line { margin-top: 0.65rem; }
+  .s-mirror h2 { font-size: clamp(1.25rem, 2.4vw, 1.9rem); }
+  .kicker { margin-bottom: 0.9rem; }
+  .ts-card li { font-size: 0.62rem; }
+  .ts-tree { font-size: 0.56rem; }
+  .ts-endpoints { font-size: 0.55rem; margin-top: 0.7rem; }
+}
+
+/* slide 2 — tech sheet */
+.ts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; }
+.ts-card { background: var(--panel); border: 1px solid var(--panel-line); border-radius: 12px; padding: 0.7rem 0.8rem; }
+.ts-card h4 { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; color: var(--cyan); margin-bottom: 0.45rem; }
+.ts-card ul { list-style: none; }
+.ts-card li { position: relative; padding: 0.12rem 0 0.12rem 0.75rem; font-size: 0.67rem; color: var(--ink-dim); line-height: 1.45; }
+.ts-card li::before { content: "·"; position: absolute; left: 0.15rem; top: 0.05rem; color: var(--indigo); font-weight: 700; }
+.ts-card li b { color: var(--ink); font-weight: 600; }
+.ts-tree {
+  font-family: var(--mono); font-size: 0.6rem; line-height: 1.55; color: #a5b4fc;
+  background: rgba(2,6,18,.6); border: 1px solid var(--panel-line); border-radius: 8px;
+  padding: 0.45rem 0.55rem; margin-bottom: 0.45rem; white-space: pre;
+}
+.ts-endpoints {
+  margin-top: 0.9rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.02em;
+  color: #a5b4fc; text-align: center; line-height: 1.7;
+  background: rgba(99,102,241,.08); border: 1px solid rgba(129,140,248,.25);
+  border-radius: 10px; padding: 0.5rem 0.9rem;
 }
 
 /* reduced motion */
